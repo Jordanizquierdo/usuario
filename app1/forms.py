@@ -30,8 +30,11 @@ class FormUser(forms.ModelForm):
 
     def clean_correo(self):
         correo = self.cleaned_data.get('correo')
-        if correo and len(correo) > 30:
-            raise ValidationError("El correo no debe exceder los 30 caracteres.")
+        if correo:
+            if len(correo) > 30:
+                raise ValidationError("El correo no debe exceder los 30 caracteres.")
+            if "@" not in correo:
+                raise ValidationError("El correo debe contener el carácter '@'.")
         return correo
 
     def clean_direccion(self):
