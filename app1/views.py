@@ -32,7 +32,7 @@ def actualizarUser(request,id):
         form = FormUser(request.POST,instance=user)
         if form.is_valid():
             form.save()
-        redirect('/usuarios')
+        return redirect('/usuarios')
     data = {'form':form}
     return render(request,'app1/agregarUsuario.html',data)
 
